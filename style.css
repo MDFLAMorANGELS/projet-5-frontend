@@ -1,0 +1,50 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+header{
+    display: flex;
+    flex-direction: column;
+}
+nav{
+    display: flex;
+    background-color: #007bff;
+}
+.logo{
+    flex: 6;
+    margin-left: 3%
+}
+.bouton_home{
+    flex: 1;
+    text-align: center;
+}
+.panier{
+    flex: 1;
+    margin-right: 3%;
+}
+.banniere{
+    height: 400px;
+    border: 1px solid black;
+    text-align: center;
+}
+section{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #343a40;
+}
+.produit{
+    margin-right: 10%;
+}
+footer{
+    background-color: #007bff;
+    display: flex;   display: flex;
+
+}
+.resaux{
+}
+.fa-facebook-square{
+    width: 40px;
+    height: 40px;
+}
+
