@@ -45,9 +45,6 @@ section{
     flex-wrap: wrap;
     background-color: #343a40;
 }
-.produit{
-    margin-right: 10%;
-}
 footer{
     background-color: #974F20;
     display: flex;
@@ -57,11 +54,6 @@ footer{
 .resaux{
     display: flex;
     justify-content: center;
-}
-
-.produit img{
-    width: 550px;
-    height: 500px;
 }
 
 .fab{
@@ -77,12 +69,19 @@ color: white;
 
 /*partie produit*/
 
-.produit{
-    background-color: #fff;
+#produit_list{
     display: flex;
-    flex-direction: row-reverse;
     margin: 2%;
+    flex-wrap: wrap;
 }
 .description{
     width:400px;
+}
+#produit_list img{
+    width: 450px;
+    height: 400px;
+}
+.produit{
+    background-color: #fff;
+    display: flex;
 }

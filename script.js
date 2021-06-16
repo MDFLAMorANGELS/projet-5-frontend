@@ -4,16 +4,18 @@ class Produits {
       this.name = elt.name;
       this.description = elt.description;
       this.price = elt.price;
-      this.color = elt.color;
+      this.colors = elt.colors;
     }
     
     displayInList(){
-    return  `<img src=${this.imageUrl}>
-            <div>
-            <p>${this.name}</p>
-            <p>${this.description}</p>
-            <p>${this.price} €</p>
-            <p>${this.color}</p>
+    return  `<div class="produit">
+            <img src=${this.imageUrl}>
+            <div class="description">
+            <p class="produit_title">${this.name}</p>
+            <p class="produit_description">${this.description}</p>
+            <p class="porduit_prix">${this.price} €</p>
+            <p "porduit_colors">${this.color}</p>
+            </div>
             </div>`;
     }
   }
@@ -27,17 +29,4 @@ class Produits {
       let pic = new Produits(pictures[i]);
       picsElt.innerHTML += pic.displayInList();
     }
-    pictures.colors.forEach(color => {
-        let color_ = "";
-    
-        if (color === "Dark brown") {
-          color_ = "#4c1414";
-        } else if (color === "Pale brown") {
-          color_ = "#c88e62";
-        } else {
-          color_ = color;
-        }
-    
-        content += `<span id="color" style=" background-color: ${color_}" title="${color}"></span>`;
-      });
   })
