@@ -1,6 +1,7 @@
 body{
     margin: 0;
     padding: 0;
+    min-height: 100vh;
 }
 a{
     text-decoration: none;
@@ -34,22 +35,32 @@ nav{
 .panier{
     margin-right: 10%;
 }
-.banniere{
-    height: 200px;
-    border: 1px solid black;
-    text-align: center;
+#banniere img{
+    height: 850px;
+    width: 100%;
+}
+h2{
+
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    color: #fff;
+    font-size: 50px;
 }
 section{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     background-color: #343a40;
+    position: relative;
+    margin-top: -200px;
 }
 footer{
     background-color: #974F20;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin-top: auto;
 }
 .resaux{
     display: flex;
@@ -68,20 +79,40 @@ color: white;
 }
 
 /*partie produit*/
-
+h3{
+    color: #fff;
+    font-size: 30px;
+}
+h4{
+    font-size: 20px;
+}
 #produit_list{
     display: flex;
-    margin: 2%;
+    margin: 0 6% 0 6%;
     flex-wrap: wrap;
 }
 .description{
-    width:400px;
+    width:350px;
 }
 #produit_list img{
-    width: 450px;
-    height: 400px;
+    width: 400px;
+    height: 350px;
+    border-radius: 25px 25px;
+    box-shadow: 0 6px 6px rgba(0,0,0,0.2);
 }
 .produit{
-    background-color: #fff;
+    background-color: rgb(245, 225, 225);
+    margin: 2%;
+    border-radius: 25px 25px;
+    box-shadow: 0 6px 6px rgba(0,0,0,0.4);
+}
+.produit_title{
     display: flex;
+    justify-content: center;
+}
+.description{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 5%;
 }

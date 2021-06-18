@@ -11,7 +11,7 @@ class Produits {
     return  `<div class="produit">
             <img src=${this.imageUrl}>
             <div class="description">
-            <p class="produit_title">${this.name}</p>
+            <h4 class="produit_title">${this.name}</h4>
             <p class="produit_description">${this.description}</p>
             <p class="porduit_prix">${this.price} €</p>
             <p "porduit_colors">${this.color}</p>
@@ -29,4 +29,8 @@ class Produits {
       let pic = new Produits(pictures[i]);
       picsElt.innerHTML += pic.displayInList();
     }
+    let img_banneire = document.createElement("img");
+    img_banneire.src = "http://localhost:3000/images/teddy_4.jpg";
+    let banniere = document.getElementById("banniere");
+    banniere.appendChild(img_banneire);
   })
