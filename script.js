@@ -5,32 +5,35 @@ class Produits {
       this.description = elt.description;
       this.price = elt.price;
       this.colors = elt.colors;
+      this._id = elt._id;
     }
     
     displayInList(){
     return  `<div class="produit">
+            <a href="/produits.html?id=${this.id}">
             <img src=${this.imageUrl}>
             <div class="description">
             <h4 class="produit_title">${this.name}</h4>
             <p class="produit_description">${this.description}</p>
-            <p class="porduit_prix">${this.price} €</p>
-            <p "porduit_colors">${this.color}</p>
+            <p class="produit_prix">${this.price / 100}.00 €</p>
+            <p class="produit_colors" style="background-color:${this.colors[0]}; width:15px ; height:15px"></p>
+            <p class="produit_colors" style="background-color:${this.colors[1]}; width:15px ; height:15px"></p>
+            <p class="produit_colors" style="background-color:${this.colors[2]}; width:15px ; height:15px"></p>
+            <p class="produit_colors" style="background-color:${this.colors[3]}; width:15px ; height:15px"></p>
+            <p class="produit_colors" style="background-color:${this.colors[4]}; width:15px ; height:15px"></p>
             </div>
+            </a>
             </div>`;
     }
   }
   
   fetch("http://localhost:3000/api/teddies")
     .then(res => res.json())
-  .then(pictures => {
-    console.log(pictures);
+  .then(product => {
+    console.log(product);
     let picsElt = document.getElementById("produit_list");
-    for(let i=0; i < 5; i++){
-      let pic = new Produits(pictures[i]);
+    for(product of product){
+      let pic = new Produits(product);
       picsElt.innerHTML += pic.displayInList();
     }
-    let img_banneire = document.createElement("img");
-    img_banneire.src = "http://localhost:3000/images/teddy_4.jpg";
-    let banniere = document.getElementById("banniere");
-    banniere.appendChild(img_banneire);
-  })
+})
