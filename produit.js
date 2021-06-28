@@ -2,9 +2,25 @@
 //recuperer le produit en fonction de son id avec l API
 //afficher le produit
 //permettre d afficher la couleur et d ajouter au panier
-let id= new URL(window.location).searchParams.get("id");
-console.log(id);
+fetch("http://localhost:3000/api/teddies")
+    .then(res => res.json())
+  .then(produit => {
+    console.log(produit);
+  })
 
+
+let searchParams = new URL(window.location).searchParams.get('id');
+console.log(searchParams);
+if (searchParams.has('id')) {
+    let prodId = searchParams.get('id');
+    let produitToDisplay = produit[prodId];
+    let root = document.querySelector('#product-detail');
+    root.innerHTML = Produit.displayInList();
+    let prod = new Produit(produit);
+    root.innerHTML = prod.displayInList();
+} else {
+    windows.location.pathname = 'index.hmtl';
+}
 fetch("http://localhost:3000/api/teddies")
     .then(res => res.json())
     .then(product => {
@@ -13,6 +29,7 @@ fetch("http://localhost:3000/api/teddies")
         return displayInList()
     }
     })
+
 /*async function myFetch() {
 //    let response = await fetch(`http://localhost:3000/api/teddies/${id}`);
 }*/
