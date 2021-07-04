@@ -10,7 +10,7 @@ if ( id !== undefined){
     console.log(produit);
     let root = document.querySelector('#product-detail');
     let prod = new Produit(produit);
-    root.innerHTML = prod.displayInList();
+    root.innerHTML = prod.displayProduit();
   })
 } else {
     let root = document.querySelector('#product-detail');
