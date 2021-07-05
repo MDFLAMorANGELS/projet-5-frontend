@@ -11,6 +11,47 @@ if ( id !== undefined){
     let root = document.querySelector('#product-detail');
     let prod = new Produit(produit);
     root.innerHTML = prod.displayProduit();
+    const btn_envoyerPanier = document.querySelector("#btn_envoyer");
+    console.log(btn_envoyerPanier);
+    btn_envoyerPanier.addEventListener("click", (event) => {
+      event.preventDefault();
+
+    const idForm = document.querySelector("#option_produit");
+    const choixForm = idForm.value;
+    console.log(choixForm);
+
+      let optionsProduit = {
+        nomProduit: prod.name,
+        idProduit: id,
+        option_produit: choixForm,
+        quantite: 1,
+        prix: prod.price /100 ,
+      }
+      console.log(optionsProduit);
+
+      let produitEnregistrerLocalStorage = JSON.parse(localStorage.getItem("produit"));
+      const popupConfirmation = () =>{
+        if(window.alert(`${prod.name} couleur : ${choixForm} a bien été ajouté au panier
+          consultez le panier OK ou revenir a l'accueil ANNULER`)){
+          window.location.href = "./panier.html";
+        }else{
+          window.location.href = "./index.html";
+        }
+      };
+
+    if(produitEnregistrerLocalStorage){
+      produitEnregistrerLocalStorage.push(optionsProduit);
+      localStorage.setItem("produit", JSON.stringify(produitEnregistrerLocalStorage));
+      console.log(produitEnregistrerLocalStorage);
+      popupConfirmation();
+    }else{
+      produitEnregistrerLocalStorage = [];
+      produitEnregistrerLocalStorage.push(optionsProduit);
+      localStorage.setItem("produit", JSON.stringify(produitEnregistrerLocalStorage));
+      console.log(produitEnregistrerLocalStorage);
+      popupConfirmation();
+    };
+    })
   })
 } else {
     let root = document.querySelector('#product-detail');
@@ -24,3 +65,4 @@ function getParamFromURI(param){
     }
     return undefined;
 }
+

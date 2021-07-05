@@ -34,13 +34,14 @@ class Produit {
       <form>
       <fieldset>
       <legend>Veuillez choisir la couleur parmit : ${this.colors}</legend>
-      <div class="colors" style="display:flex ">
+      <label>choisir la couleur :</label>
+      <select name="option_produit" id="option_produit">
       ${this.displayColor()}
-      </div>
+      </select>
       <div class="button" style="margin:2%">
-      <button class="bouton panier">Ajouter au panier</button>
-      </form>
+      <button type="submit" id="btn_envoyer" class="bouton panier">Ajouter au panier</button>
       </fieldset>
+      </form>
       </div>
       </div>
       </div>`;
@@ -55,11 +56,14 @@ class Produit {
       let content = "";
       this.colors.forEach(color => {
         let bgColor = colors[color] ? colors[color] : color;
-        content += `<div>
-                    <input type="radio" id="colors" name="colors" value="${bgColor}"
+        content += `<option value =${bgColor}>${bgColor}</option> `
+        
+        
+        /*`<div>
+                    <input type="radio" id="${bgColor}" name="${bgColor}" value="${bgColor}"
                     checked>
                     <label style="background-color:${bgColor} ; width:15px ; height:15px ; border:solid black 1px ; for="${bgColor}">SELECT</label>
-                    </div>`
+                    </div>`*/
         //`<p class="produit_colors" 
         //style="background-color:${bgColor}; width:15px ; height:15px ; border:solid black 1px"></p>
         //`
@@ -68,3 +72,9 @@ class Produit {
     }
 
   }
+  /*<form>
+  <fieldset>
+  <legend>Veuillez choisir la couleur parmit : ${this.colors}</legend>
+  <div class="colors" style="display:flex ">
+  ${this.displayColor()}
+  </div>*/
