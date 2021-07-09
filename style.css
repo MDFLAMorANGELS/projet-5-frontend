@@ -144,9 +144,51 @@ h4{
 .produit_description , .produit_prix{
     font-size: 1.2em;
 }
-
+span{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+input{
+    display: none;
+}
+input[type='radio']:checked + label {
+    border: 2px solid red;
+}
+label{
+    border: 1px solid black;
+}
+#color{
+    display: flex;
+}
 /* Page Panier*/
 
 #mainProd{
     height: 900px;
+    margin: 15%;
 }
+.container-produits {
+    display: grid; 
+    grid-template-columns: auto; 
+    grid-template-rows: auto; 
+    grid-gap: 10px;
+    grid-template-areas: 
+      "container-produits"; 
+    display: flex;
+    flex-direction: column;
+    min-width: 80vw;
+    justify-content: center;
+    border: 2px solid black;  
+  }
+  .container-recapitulatif{
+      display: flex;
+      background-color: antiquewhite;
+      justify-content: space-around;
+      align-items: center;
+  }
+  .container-montant-total{
+      display: flex;
+      background-color: #F3E9F1;
+      justify-content: space-around;
+      align-items: center;
+  }

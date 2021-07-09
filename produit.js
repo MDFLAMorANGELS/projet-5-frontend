@@ -11,12 +11,13 @@ if ( id !== undefined){
     let root = document.querySelector('#product-detail');
     let prod = new Produit(produit);
     root.innerHTML = prod.displayProduit();
+    
     const btn_envoyerPanier = document.querySelector("#btn_envoyer");
     console.log(btn_envoyerPanier);
     btn_envoyerPanier.addEventListener("click", (event) => {
       event.preventDefault();
 
-    const idForm = document.querySelector("#option_produit");
+    const idForm = document.querySelector("input[name='color']:checked");
     const choixForm = idForm.value;
     console.log(choixForm);
 
@@ -31,7 +32,7 @@ if ( id !== undefined){
 
       let produitEnregistrerLocalStorage = JSON.parse(localStorage.getItem("produit"));
       const popupConfirmation = () =>{
-        if(window.alert(`${prod.name} couleur : ${choixForm} a bien été ajouté au panier
+        if(window.confirm(`${prod.name} couleur : ${choixForm} a bien été ajouté au panier
           consultez le panier OK ou revenir a l'accueil ANNULER`)){
           window.location.href = "./panier.html";
         }else{

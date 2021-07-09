@@ -34,10 +34,9 @@ class Produit {
       <form>
       <fieldset>
       <legend>Veuillez choisir la couleur parmit : ${this.colors}</legend>
-      <label>choisir la couleur :</label>
-      <select name="option_produit" id="option_produit">
-      ${this.displayColor()}
-      </select>
+      <div id="color">
+      ${this.displayColor(true)}
+      </div>
       <div class="button" style="margin:2%">
       <button type="submit" id="btn_envoyer" class="bouton panier">Ajouter au panier</button>
       </fieldset>
@@ -47,7 +46,7 @@ class Produit {
       </div>`;
     }
 
-    displayColor(){
+    displayColor(isForm = false){
       const colors = {
         "Dark brown" : '#654321',
         "Pale brown" : '#987654'
@@ -56,7 +55,17 @@ class Produit {
       let content = "";
       this.colors.forEach(color => {
         let bgColor = colors[color] ? colors[color] : color;
-        content += `<option value =${bgColor}>${bgColor}</option> `
+        if(isForm){
+          content += `<div>
+          <input readOnly type="radio" id="${color}" name="color" value="${color}">
+          <label style="background-color:${bgColor} ; width:15px ; height:15px ; display:block;" for="${color}"><span style="background-color:${bgColor}"></span></label>
+          </div>`
+        }else{
+          content += `<p class="produit_colors" 
+          style="background-color:${bgColor}; width:15px ; height:15px ; border:solid black 1px"></p>
+          `
+        }
+       
         
         
         /*`<div>
