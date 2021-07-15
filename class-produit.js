@@ -56,34 +56,17 @@ class Produit {
       this.colors.forEach(color => {
         let bgColor = colors[color] ? colors[color] : color;
         if(isForm){
-          content += `<div>
+          content += `<div class="select-color">
           <input readOnly type="radio" id="${color}" name="color" value="${color}">
-          <label style="background-color:${bgColor} ; width:15px ; height:15px ; display:block;" for="${color}"><span style="background-color:${bgColor}"></span></label>
+          <label style="background-color:${bgColor} ; width:20px ; height:20px ; display:block;" for="${color}"><span style="background-color:${bgColor}"></span></label>
           </div>`
         }else{
           content += `<p class="produit_colors" 
-          style="background-color:${bgColor}; width:15px ; height:15px ; border:solid black 1px"></p>
+          style="background-color:${bgColor}; width:20px ; height:20px ; border:solid black 1px"></p>
           `
         }
-       
-        
-        
-        /*`<div>
-                    <input type="radio" id="${bgColor}" name="${bgColor}" value="${bgColor}"
-                    checked>
-                    <label style="background-color:${bgColor} ; width:15px ; height:15px ; border:solid black 1px ; for="${bgColor}">SELECT</label>
-                    </div>`*/
-        //`<p class="produit_colors" 
-        //style="background-color:${bgColor}; width:15px ; height:15px ; border:solid black 1px"></p>
-        //`
       });
       return content;
     }
 
   }
-  /*<form>
-  <fieldset>
-  <legend>Veuillez choisir la couleur parmit : ${this.colors}</legend>
-  <div class="colors" style="display:flex ">
-  ${this.displayColor()}
-  </div>*/
