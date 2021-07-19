@@ -20,7 +20,7 @@ if(produitEnregistrerLocalStorage ===null){
         structurePanier = structurePanier +`
         <div class="container-recapitulatif">
             <div>Quantité 1 - ${produitEnregistrerLocalStorage[k].nomProduit} couleur : ${produitEnregistrerLocalStorage[k].option_produit}</div>
-            <div class="prix_btn">${produitEnregistrerLocalStorage[k].prix}€ - <button class="btn-supprimer"> Supprimer </button></div>
+            <div class="prix_btn">${produitEnregistrerLocalStorage[k].prix}€ - <button class="btn-supprimer" data-index="${k}"> Supprimer </button></div>
         </div>
         `;
     }
@@ -35,10 +35,9 @@ for ( let l = 0 ; l < btnSupprimer.length ; l++) {
     btnSupprimer[l].addEventListener("click",(event) => {
         event.preventDefault();
 
-        let idSupprimer = produitEnregistrerLocalStorage[l].idProduit;
-        console.log(idSupprimer);
-
-        produitEnregistrerLocalStorage = produitEnregistrerLocalStorage.filter(el => el.idProduit !== idSupprimer);
-        console.log(produitEnregistrerLocalStorage);
+        let index = btnSupprimer[l].dataset.index;
+        produitEnregistrerLocalStorage.splice(index,1);
+        localStorage.setItem("produit", JSON.stringify(produitEnregistrerLocalStorage));
+        window.location.reload();
     })
 }
