@@ -31,7 +31,7 @@ class Produit {
       <h4 class="produit_title">${this.name}</h4>
       <p class="produit_description">${this.description}</p>
       <p class="produit_prix">${this.price / 100}.00 €</p>
-      <form>
+      <form id="form-produit">
       <fieldset>
       <legend>Veuillez choisir la couleur parmit : ${this.colors}</legend>
       <div id="color">
@@ -57,8 +57,8 @@ class Produit {
         let bgColor = colors[color] ? colors[color] : color;
         if(isForm){
           content += `<div class="select-color">
-          <input readOnly type="radio" id="${color}" name="color" value="${color}">
-          <label style="background-color:${bgColor} ; width:20px ; height:20px ; display:block;" for="${color}"><span style="background-color:${bgColor}"></span></label>
+          <input readOnly type="radio" id="${color}" class="input-produit" name="color" value="${color}">
+          <label id="label-produit" style="background-color:${bgColor} ; width:20px ; height:20px ; display:block;" for="${color}"><span style="background-color:${bgColor}"></span></label>
           </div>`
         }else{
           content += `<p class="produit_colors" 

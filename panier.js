@@ -4,7 +4,7 @@ console.log(produitEnregistrerLocalStorage);
 const positionPanier = document.querySelector(".container-produits");
 
 
-if(produitEnregistrerLocalStorage ===null){
+if(produitEnregistrerLocalStorage === null || produitEnregistrerLocalStorage == 0){
     const panierVide = `
     <div class="container-panier-vide">
         <div> Le panier et vide</div>
@@ -20,7 +20,7 @@ if(produitEnregistrerLocalStorage ===null){
         structurePanier = structurePanier +`
         <div class="container-recapitulatif">
             <div>Quantité 1 - ${produitEnregistrerLocalStorage[k].nomProduit} couleur : ${produitEnregistrerLocalStorage[k].option_produit}</div>
-            <div class="prix_btn">${produitEnregistrerLocalStorage[k].prix}€ - <button class="btn-supprimer" data-index="${k}"> Supprimer </button></div>
+            <div class="prix_btn">${produitEnregistrerLocalStorage[k].prix} €  -  <button class="btn-supprimer" data-index="${k}"> Supprimer </button></div>
         </div>
         `;
     }
@@ -41,3 +41,37 @@ for ( let l = 0 ; l < btnSupprimer.length ; l++) {
         window.location.reload();
     })
 }
+
+const btn_tout_supprimer_position = `
+    <button class="btn-tout-supprimer"> Vider le panier </button>
+`;
+
+positionPanier.insertAdjacentHTML("beforeend", btn_tout_supprimer_position);
+
+const btn_tout_supprimer = document.querySelector(".btn-tout-supprimer");
+
+btn_tout_supprimer.addEventListener('click', (event) => {
+event.preventDefault();
+
+localStorage.removeItem("produit");
+alert("le panier a été vider")
+window.location.href = "panier.html";
+})
+
+
+let prixTotalCalcul = [];
+
+for(let m = 0 ; m < produitEnregistrerLocalStorage.length ; m++ ){
+   let prixProduitPanier =  produitEnregistrerLocalStorage[m].prix;
+
+   prixTotalCalcul.push(prixProduitPanier);
+}
+
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+const prixTotal = prixTotalCalcul.reduce(reducer, 0);
+
+const totalPrixPosition = `
+    <div class="affichage-prix">Le prix total est de : ${prixTotal} €</div>
+`;
+
+positionPanier.insertAdjacentHTML("beforeend", totalPrixPosition);
