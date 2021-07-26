@@ -1,4 +1,4 @@
-let produitEnregistrerLocalStorage = JSON.parse(localStorage.getItem("produit"));
+let produitEnregistrerLocalStorage = localStorage.getItem("produit") ? JSON.parse(localStorage.getItem("produit")) : [];
 console.log(produitEnregistrerLocalStorage);
 
 const positionPanier = document.querySelector(".container-produits");
@@ -75,3 +75,29 @@ const totalPrixPosition = `
 `;
 
 positionPanier.insertAdjacentHTML("beforeend", totalPrixPosition);
+
+
+
+// data to be sent to the POST request
+let _data = {
+    contact: {
+        firstName: "teddies",
+         lastName: "ourson",
+         address: "rue du",
+         city: "paris",
+        email: "mm@gmail.com",
+       },
+       products: ["5beaa8bf1c9d440000a57d94"]
+  }
+
+ 
+ 
+
+  fetch('http://localhost:3000/api/teddies/order', {
+    method: "POST",
+    body: JSON.stringify(_data),
+    headers: {"Content-type": "application/json; charset=UTF-8"}
+  })
+  .then(response => response.json()) 
+  .then(json => console.log(json))
+  .catch(err => console.log(err));

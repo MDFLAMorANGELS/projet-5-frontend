@@ -23,6 +23,35 @@
         <h2>Les produits sélectionnées : </h2>
     </div>
     <button class="envoie-page-formulaire"><a href="./formulaire.html">Valider le panier</a></button>
+
+    <div id="formulaire-commande">
+        <h4>Remplissez le formulaire pour valider la commande</h2>
+    <form id="formulaire" action="#">
+        
+        <label for="prenom">Prenom : </label>
+        <input type="text" id="prenom" name="prenom" required>
+
+        <label for="nom">Nom : </label>
+        <input type="text" id="nom" name="nom" required>
+
+        <label for="adresse">adresse : </label>
+        <textarea type="text" id="adresse" required></textarea>
+
+        <label for="ville">Ville : </label>
+        <input type="text" id="ville" name="ville" required>
+
+        <label for="code-postal">Code postal : </label>
+        <input type="text" id="code-postal" name="code-postal" required>
+
+        <label for="email">Email : </label>
+        <input type="text" id="email" name="email" required>
+
+        <button id="envoyer-formulaire" type="submit" name="envoyer-formulaire">
+            Confirmation de la commande
+        </button>
+    
+    </form>
+    </div>
     </main>
     <footer>
         <a href="#" class="contact">nous contacter</a>
