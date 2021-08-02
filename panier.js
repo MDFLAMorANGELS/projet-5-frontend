@@ -204,15 +204,18 @@ btnEnvoyerFormulaire.addEventListener('click', (e) => {
             products: produitEnregistrerLocalStorage.map(elt => elt.idProduit),
             contact: formulaireValues
         }
-        console.log("aEnvoyer");
-        console.log(aEnvoyer);
+
         fetch('http://localhost:3000/api/teddies/order', {
             method: "POST",
             body: JSON.stringify(aEnvoyer),
             headers: { "Content-type": "application/json; charset=UTF-8" }
         })
             .then(response => response.json())
-            .then(json => console.log(json))
+            .then(json => {
+                console.log(json)
+                localStorage.setItem("formulaireID", JSON.stringify(json));
+                window.location.href="./comfirmation.html";
+            })
             .catch(err => console.log(err));
     } else {
         alert("Veuillez bien remplir le formulaire");
@@ -228,9 +231,8 @@ function remplirFormulaireAutoViaLocalStorage(input) {
 };
 
 remplirFormulaireAutoViaLocalStorage("firstName");
+remplirFormulaireAutoViaLocalStorage("city");
 remplirFormulaireAutoViaLocalStorage("lastName");
 remplirFormulaireAutoViaLocalStorage("address");
-remplirFormulaireAutoViaLocalStorage("city");
 remplirFormulaireAutoViaLocalStorage("codePostal");
 remplirFormulaireAutoViaLocalStorage("email");
-
