@@ -252,3 +252,20 @@ input{
 textarea{
     background-color: crimson;
 }
+
+/*  Page de comfirmation  */
+
+#message-comfirmation{
+    border: 2px black solid;
+    padding: 2%;
+    margin: 2% 10%;
+    border-radius: 3em;
+}
+#titre-message{
+    text-align: center;
+
+}
+.message{
+    font-size: 1.2em;
+    text-align: center;
+}

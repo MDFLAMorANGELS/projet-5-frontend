@@ -27,7 +27,7 @@ if (produitEnregistrerLocalStorage === null || produitEnregistrerLocalStorage ==
     if (k == produitEnregistrerLocalStorage.length) {
         positionPanier.innerHTML = structurePanier;
     }
-}
+
 
 let btnSupprimer = document.querySelectorAll(".btn-supprimer");
 
@@ -58,7 +58,7 @@ btn_tout_supprimer.addEventListener('click', (event) => {
     window.location.href = "panier.html";
 })
 
-
+/*
 let prixTotalCalcul = [];
 
 for (let m = 0; m < produitEnregistrerLocalStorage.length; m++) {
@@ -67,8 +67,8 @@ for (let m = 0; m < produitEnregistrerLocalStorage.length; m++) {
     prixTotalCalcul.push(prixProduitPanier);
 }
 
-const reducer = (accumulator, currentValue) => accumulator + currentValue;
-const prixTotal = prixTotalCalcul.reduce(reducer, 0);
+const reducer = (accumulator, currentValue) => accumulator + currentValue;*/
+const prixTotal = getTotalPrice(produitEnregistrerLocalStorage);
 
 const totalPrixPosition = `
     <div class="affichage-prix">Le prix total est de : ${prixTotal} €</div>
@@ -76,49 +76,13 @@ const totalPrixPosition = `
 
 positionPanier.insertAdjacentHTML("beforeend", totalPrixPosition);
 
-const afficherFormulaire = () => {
-    const positionFormulaire = document.querySelector('.container-produits');
 
-    const structureFormulaire = `
-    <div id="formulaire-commande">
-    <h4>Remplissez le formulaire pour valider la commande</h2>
-<form id="formulaire">
-    
-    <label for="prenom">Prenom : </label>
-    <input type="text" id="firstName" name="firstName" required>
-
-    <label for="nom">Nom : </label>
-    <input type="text" id="lastName" name="nom" required>
-
-    <label for="adresse">adresse : </label>
-    <textarea type="text" id="address" required></textarea>
-
-    <label for="ville">Ville : </label>
-    <input type="text" id="city" name="ville" required>
-
-    <label for="codePostal">Code postal : </label>
-    <input type="text" id="codePostal" name="code-postal" required>
-
-    <label for="email">Email : </label>
-    <input type="text" id="email" name="email" required>
-
-    <button id="envoyer-formulaire" type="submit" name="envoyer-formulaire">
-        Confirmation de la commande
-    </button>
-
-</form>
-</div>
-    `;
-
-    positionFormulaire.insertAdjacentHTML("afterend", structureFormulaire);
-};
-
-afficherFormulaire();
+afficherFormulaire('.container-produits');
 
 const btnEnvoyerFormulaire = document.querySelector("#envoyer-formulaire");
 
 btnEnvoyerFormulaire.addEventListener('click', (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
 
     //const formulaireValues = new Formulaire();
@@ -147,58 +111,14 @@ btnEnvoyerFormulaire.addEventListener('click', (e) => {
         return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,15}$/.test(value);
     };
 
-    function prenomControl() {
-        const lePrenom = formulaireValues.firstName;
-        if (regExPrenomNomVille(lePrenom)) {
-            return true;
-        } else {
-            alert(textAlert("le prenom"));
-            return false;
-        }
-    };
 
-    function nomControl() {
-        const leNom = formulaireValues.lastName;
-        if (regExPrenomNomVille(leNom)) {
-            return true;
-        } else {
-            alert(textAlert("le nom"));
-            return false;
-        }
-    };
-
-    function codePostalControl() {
-        const leCodePostal = formulaireValues.codePostal;
-        if (regExCodePostal(leCodePostal)) {
-            return true;
-        } else {
-            alert("le code postal : doit etre composé de 5 chiffres");
-            return false;
-        }
-    };
-
-    function villeControl() {
-        const laVille = formulaireValues.city;
-        if (regExPrenomNomVille(laVille)) {
-            return true;
-        } else {
-            alert(textAlert("la ville"));
-            return false;
-        }
-    };
-
-    function emailControl() {
-        const leEmail = formulaireValues.email;
-        if (regExEmail(leEmail)) {
-            return true;
-        } else {
-            alert("L email n est pas valide");
-            return false;
-        }
-    };
-
-
-    if (prenomControl() && nomControl() && codePostalControl() && emailControl()&& villeControl()) {
+    if (check(formulaireValues.firstName, regExPrenomNomVille, textAlert('Le prenom')) &&
+        check(formulaireValues.lastName, regExPrenomNomVille, textAlert('Le nom')) &&
+        checkEmpty(formulaireValues.address) &&
+        check(formulaireValues.city, regExPrenomNomVille, textAlert('La ville')) &&
+        check(formulaireValues.codePostal, regExCodePostal, textAlert('Le code postal')) &&
+        check(formulaireValues.email, regExEmail, textAlert('Le mail'))
+        ) {
         localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));
         const aEnvoyer = {
             products: produitEnregistrerLocalStorage.map(elt => elt.idProduit),
@@ -236,3 +156,66 @@ remplirFormulaireAutoViaLocalStorage("lastName");
 remplirFormulaireAutoViaLocalStorage("address");
 remplirFormulaireAutoViaLocalStorage("codePostal");
 remplirFormulaireAutoViaLocalStorage("email");
+}
+
+function check(value, regex, error){
+    if(regex(value)){
+        return true
+    }
+    alert(error)
+    return false
+}
+
+function checkEmpty(entry){
+    if(entry.length > 0){
+        return true
+    } 
+        alert("le champ ne peut etre vide");
+        return false;
+  
+}
+
+
+function afficherFormulaire(container){
+    const positionFormulaire = document.querySelector(container);
+
+    const structureFormulaire = `
+    <div id="formulaire-commande">
+    <h4>Remplissez le formulaire pour valider la commande</h2>
+<form id="formulaire">
+    
+    <label for="prenom">Prenom : </label>
+    <input type="text" id="firstName" name="firstName" required>
+
+    <label for="nom">Nom : </label>
+    <input type="text" id="lastName" name="nom" required>
+
+    <label for="adresse">adresse : </label>
+    <textarea type="text" id="address" required></textarea>
+
+    <label for="ville">Ville : </label>
+    <input type="text" id="city" name="ville" required>
+
+    <label for="codePostal">Code postal : </label>
+    <input type="text" id="codePostal" name="code-postal" required>
+
+    <label for="email">Email : </label>
+    <input type="text" id="email" name="email" required>
+
+    <button id="envoyer-formulaire" type="submit" name="envoyer-formulaire">
+        Confirmation de la commande
+    </button>
+
+</form>
+</div>
+    `;
+
+    positionFormulaire.insertAdjacentHTML("afterend", structureFormulaire);
+};
+
+function getTotalPrice(products){
+    let total = 0;
+    products.forEach(product => total+= product.prix);
+    return total;
+
+}
