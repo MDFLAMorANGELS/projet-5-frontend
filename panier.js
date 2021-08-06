@@ -181,7 +181,7 @@ function afficherFormulaire(container){
 
     const structureFormulaire = `
     <div id="formulaire-commande">
-    <h4>Remplissez le formulaire pour valider la commande</h2>
+    <h4 id="titre-form">Remplissez le formulaire pour valider la commande</h2>
 <form id="formulaire">
     
     <label for="prenom">Prenom : </label>
