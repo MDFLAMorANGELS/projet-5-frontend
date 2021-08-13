@@ -1,5 +1,7 @@
+//-------------------//
 const validationId = localStorage.getItem("formulaireID") ? JSON.parse(localStorage.getItem("formulaireID")) : [];
 const messageComfirm = document.querySelector("#message-comfirmation");
+//Création de l html du message de comfirmation
 const message = `
 <h2 id="titre-message">Comfirmation de la commande</h2>
 <div id="comfirm">
@@ -19,17 +21,17 @@ messageComfirm.innerHTML = message;
 let produitEnregistrerLocalStorage = localStorage.getItem("produit") ? JSON.parse(localStorage.getItem("produit")) : [];
 const positionPanier = document.querySelector("#details");
 
-    let structurePanier = [];
+let structurePanier = [];
 
-    for (k = 0; k < produitEnregistrerLocalStorage.length; k++) {
-        console.log("produit dans le panier-" + produitEnregistrerLocalStorage.length)
-        structurePanier = structurePanier + `
+for (k = 0; k < produitEnregistrerLocalStorage.length; k++) {
+    console.log("produit dans le panier-" + produitEnregistrerLocalStorage.length)
+    structurePanier = structurePanier + `
         <div class="container-recapitulatif">
             <div>Quantité 1 - ${produitEnregistrerLocalStorage[k].nomProduit} couleur : ${produitEnregistrerLocalStorage[k].option_produit}</div>
             <div class="prix_btn">${produitEnregistrerLocalStorage[k].prix} €</div>
         </div>
         `;
-    }
-    if (k == produitEnregistrerLocalStorage.length) {
-        positionPanier.innerHTML = structurePanier;
-    }
+}
+if (k == produitEnregistrerLocalStorage.length) {
+    positionPanier.innerHTML = structurePanier;
+}
