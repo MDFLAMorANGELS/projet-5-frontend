@@ -112,16 +112,18 @@ h3{
 .produit{
     display: flex;
     background-color: #343a40;
+    flex-direction: column;
+    align-items: center;
 }
 #product-detail img{
     width: 800px;
     height: 700px;
-    margin: 5%;
+    margin: 2% auto;
     border-radius: 25px 25px;
     box-shadow: 0 6px 6px rgba(0,0,0,0.4);
 }
 .description-produit{
-    margin: 5%;
+    margin: 2%;
     background-color: #F3E9F1;
     border-radius: 25px 25px;
     padding: 4%;
@@ -132,6 +134,7 @@ h3{
 }
 .produit_title{
     font-size: 2em;
+    margin: 0;
 }
 .produit_description , .produit_prix{
     font-size: 1.2em;
@@ -278,4 +281,28 @@ textarea{
 .message{
     font-size: 1.2em;
     text-align: center;
+}
+/*Responsive 1024px tablette*/
+@media screen and (max-width: 1024px)
+{      
+    #product-detail img {
+        width: 80%;
+        height: 80%;
+    }
+    .produit{
+        padding: 2%;
+    }
+    .bouton{
+        margin-right: 8%;
+    }
+}
+/*Responsive 600px mobile*/
+@media screen and (max-width: 600px)
+{
+    .description-produit {
+        padding: 5%;
+    }
+    .bouton{
+        padding: 15px 15px;
+    }
 }

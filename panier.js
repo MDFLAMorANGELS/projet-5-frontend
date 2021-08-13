@@ -1,4 +1,4 @@
-//------------------//
+//Si il y a la clee produit dans le LS on parse la reponse sinon on creer un tableau
 let produitEnregistrerLocalStorage = localStorage.getItem("produit") ? JSON.parse(localStorage.getItem("produit")) : [];
 console.log(produitEnregistrerLocalStorage);
 
@@ -110,7 +110,7 @@ if (produitEnregistrerLocalStorage === null || produitEnregistrerLocalStorage ==
             check(formulaireValues.email, regExEmail, textAlert('Le mail'))
         ) {
             localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));
-            //-----------------//
+            //le .map sert uniquement a recupere l id des produit + des données du contacts
             const aEnvoyer = {
                 products: produitEnregistrerLocalStorage.map(elt => elt.idProduit),
                 contact: formulaireValues
@@ -132,7 +132,7 @@ if (produitEnregistrerLocalStorage === null || produitEnregistrerLocalStorage ==
             alert("Veuillez bien remplir le formulaire");
         };
     });
-    //------------//
+    
     remplirFormulaireAutoViaLocalStorage("firstName");
     remplirFormulaireAutoViaLocalStorage("city");
     remplirFormulaireAutoViaLocalStorage("lastName");
@@ -140,7 +140,7 @@ if (produitEnregistrerLocalStorage === null || produitEnregistrerLocalStorage ==
     remplirFormulaireAutoViaLocalStorage("codePostal");
     remplirFormulaireAutoViaLocalStorage("email");
 }
-//----//
+//Récupération de la clee formulaireValues puis parse et envoyer dans son input
 function remplirFormulaireAutoViaLocalStorage(input) {
     const dataLocalStorage = localStorage.getItem("formulaireValues");
     const dataLocalStorageObjet = JSON.parse(dataLocalStorage);
@@ -163,7 +163,6 @@ function checkEmpty(entry) {
     return false;
 }
 
-//----------------a voir une Funtion?//
 function afficherFormulaire(container) {
     const positionFormulaire = document.querySelector(container);
     //Création de l html du formulaire

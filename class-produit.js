@@ -56,7 +56,7 @@ class Produit {
     };
 
     let content = "";
-    ////
+    //creation d une boucle si colors de color existe sinon color affichera une structure html selon isForm
     this.colors.forEach(color => {
       let bgColor = colors[color] ? colors[color] : color;
       if (isForm) {
@@ -72,5 +72,4 @@ class Produit {
     });
     return content;
   }
-
 }
